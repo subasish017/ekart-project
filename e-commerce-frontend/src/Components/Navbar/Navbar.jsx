@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef, useState, useEffect } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import logo from '../Assets/logo.png'
@@ -8,10 +8,14 @@ import nav_dropdown from '../Assets/nav_dropdown.png'
 
 const Navbar = () => {
 
-  let [menu,setMenu] = useState("shop");
-  const {getTotalCartItems} = useContext(ShopContext);
-
+  const [menu, setMenu] = useState(localStorage.getItem('selectedMenu') || 'shop'); // Retrieve selected menu from local storage
+  const { getTotalCartItems } = useContext(ShopContext);
   const menuRef = useRef();
+
+  useEffect(() => {
+    // Store selected menu in local storage
+    localStorage.setItem('selectedMenu', menu);
+  }, [menu]);
 
   const dropdown_toggle = (e) => {
     menuRef.current.classList.toggle('nav-menu-visible');
