@@ -10,13 +10,11 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-// Database Connection With MongoDB
+// Database Connection With MongoDB YsDLLFjsLcS8aUa
 mongoose.connect("mongodb+srv://subhasish:YsDLLFjsLcS8aUa@cluster0.xxsmw3t.mongodb.net/e-commerce");
-// paste your mongoDB Connection string above with password
-// password should not contain '@' special character
 
 //Image Storage Engine 
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({    
     destination: './upload/images',
     filename: (req, file, cb) => {
       console.log(file);
